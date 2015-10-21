@@ -18,8 +18,11 @@ class Validate extends FileInfo implements ValidateInterface
 
   public function Size($AllowedSize)
   {
-    if($this->getSize() > $AllowedSize) {
-      $this->errors[] = "File size Not Allowed : ".$this->getName();
+    foreach ($this->FilesToUpload as $File) {
+      if($this->getSize($File) > $AllowedSize) {
+        $this->errors[] = "File size Not Allowed : ".$this->getName($File);
+        $this->errors = array_unique($this->errors);
+      }
     }
     return $this;
   }
@@ -28,15 +31,21 @@ class Validate extends FileInfo implements ValidateInterface
   {
     $AllowedExtension = explode(",", $AllowedExtension);
     $AllowedExtension = array_map('strtolower', $AllowedExtension);
-    if (!in_array($this->getExtension(), $AllowedExtension) and $this->getExtension()) {
-      $this->errors[] = "Extension Not Allowed ".$this->getExtension();
+    foreach ($this->FilesToUpload as $File ) {
+      if (!in_array($this->getExtension($File), $AllowedExtension) and $this->getExtension($File)) {
+        $this->errors[] = "Extension Not Allowed ".$this->getExtension($File);
+        $this->errros = array_unique($this->errors);
+      }
     }
     return $this;
   }
   public function Exist()
   {
-    if (!$this->getName()) {
-      $this->errors[] = "File was Not selected";
+    foreach ($this->FilesToUpload as $File ) {
+      if (!$this->getName($File)) {
+        $this->errors[] = "File was Not selected";
+        $this->errors = array_unique($this->errors);
+      }
     }
     return $this;
   }

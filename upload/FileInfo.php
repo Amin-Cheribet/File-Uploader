@@ -14,23 +14,35 @@ class FileInfo implements FileInfoInterface
 		$this->Size = filesize($FilePath);
 	}
 
-	public function getName()
+	public function getName($File = false)
 	{
-		return $this->Name;
+		if ($File) {
+			return $File["name"];
+		} else {
+			return $this->Name;
+		}
 	}
 	public function setName($newName)
 	{
 		$this->Name = $newName;
 	}
 
-	public function getSize()
+	public function getSize($File = false)
 	{
-		return $this->Size;
+		if ($File) {
+			return filesize($File['tmp_name']);
+		} else {
+			return $this->Size;
+		}
 	}
 
-	public function getExtension()
+	public function getExtension($File = false)
 	{
-		return $this->Extension;
+		if ($File) {
+			return $File["Extension"];
+		} else {
+			return $this->Extension;
+		}
 	}
 
 	public function setExtension($newExtension)

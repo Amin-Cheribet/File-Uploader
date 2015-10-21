@@ -4,7 +4,7 @@ namespace upload;
 class File extends Validate
 {
 
-  private $FilesToUpload = array();
+  public $FilesToUpload = array();
 
   function __construct($key, $File = false)
   {
@@ -27,15 +27,21 @@ class File extends Validate
 
   public function Upload($newPath)
   {
-    if (empty($this->errors) && is_dir($newPath) && is_writable($newPath)) {
-      foreach ($this->FilesToUpload as $File) {
-        $Path = $newPath.DIRECTORY_SEPARATOR.$File['name'];
-        move_uploaded_file($File['tmp_name'], $Path);
+    if (is_dir($newPath) && is_writable($newPath)) {
+      if (empty($this->errors)) {
+        foreach ($this->FilesToUpload as $File) {
+          if ($File['name']) {
+            $Path = $newPath.DIRECTORY_SEPARATOR.$File['name'];
+            $uploadedFiles[] = array('name' => $File['name'], 'dir' => $Path);
+            move_uploaded_file($File['tmp_name'], $Path);
+          }
+        }
+        return $uploadedFiles;
+      } else {
+        return false;
       }
-      return true;
-    } else {
-      $this->errors[] = "No access this directory";
-      return false;
+    }else {
+      $this->errors[] = "No access to this directory";
     }
   }
 
