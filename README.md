@@ -16,9 +16,9 @@ Single File Upload
 Multi File Upload
 
 <form method="POST" enctype="multipart/form-data">
-    <input type="file" name="myfile[]"/><br>
-    <input type="file" name="myfile[]"/><br>
-    <input type="file" name="myfile[]"/><br>
+    <input type="file" name="myfiles[]"/><br>
+    <input type="file" name="myfiles[]"/><br>
+    <input type="file" name="myfiles[]"/><br>
     <input type="submit" value="Upload File"/>
 </form>
 ```
@@ -41,10 +41,9 @@ Multi File Upload
   $file = upload('/MyDirectory');
   // optional 
   
-        // validation  
-  $file->size(9999999)              // Maximum Allowed Size
-  ->Extension('jpg,png,jpeg');      // Allowed Extensions
-        // New Name
+        // validation  max Size Allowed Extensions and if user selected a file
+  $file->size(9999999)->Extension('jpg,png,jpeg'>Exist();
+        // New Name ( Only single File uploads)
   $file->setName('myfile');
         // Get Name
   $file->getName();
