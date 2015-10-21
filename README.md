@@ -1,5 +1,5 @@
 # File-Uploader
-PHP File Uploader 
+
 Simple Easy To use PHP File Uploader
 
 ## How To Use : 
