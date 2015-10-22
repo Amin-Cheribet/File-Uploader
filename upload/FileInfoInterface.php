@@ -8,4 +8,6 @@ interface FileInfoInterface
   public function getSize();
   public function getExtension();
   public function setExtension($newExtension);
+  public function getTmpName();
+  public function setTmpName($tmpName);
 }
