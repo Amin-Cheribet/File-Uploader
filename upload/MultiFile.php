@@ -13,9 +13,7 @@ class MultiFile
         'name' => $_FILES[$key]['name'][$i],
         'tmp_name' => $_FILES[$key]['tmp_name'][$i]
         );
-      if ($data['name']) {
-        $this->Files[] = new File($key, $data);
-      }
+      $this->Files[] = new File($key, $data);
     }
   }
 
@@ -61,6 +59,7 @@ class MultiFile
       $this->Errors = array_merge($this->Errors, $File->errors);
     }
     $this->Errors = array_unique($this->Errors);
+    sort($this->Errors);
     return $this->Errors;
   }
 
