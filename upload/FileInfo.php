@@ -11,7 +11,7 @@ class FileInfo implements FileInfoInterface
 
 	function __construct($FilePath)
 	{
-		$this->Name = pathinfo($FilePath, PATHINFO_FILENAME);
+		$this->Name = $this->Name ? $this->Name : pathinfo($FilePath, PATHINFO_FILENAME);
 		$this->Size = filesize($FilePath);
 		$this->TmpName = $FilePath;
 	}
