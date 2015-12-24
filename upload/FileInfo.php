@@ -51,4 +51,22 @@ class FileInfo implements FileInfoInterface
 		$this->TmpName = $TmpName;
 	}
 
+	public function compress($quality)
+	{
+		$info = getimagesize($this->TmpName);
+
+    	if ($info['mime'] == 'image/jpeg')
+        	$image = imagecreatefromjpeg($this->TmpName);
+
+    	elseif ($info['mime'] == 'image/gif')
+        	$image = imagecreatefromgif($this->TmpName);
+
+    	elseif ($info['mime'] == 'image/png')
+        	$image = imagecreatefrompng($this->TmpName);
+
+    	imagejpeg($image, $this->TmpName, $quality);
+
+    	return $this->TmpName;
+	}
+
 }
