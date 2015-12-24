@@ -42,7 +42,7 @@ Multi File Upload
   // optional 
   
         // validation  max Size Allowed Extensions and if user selected a file
-  $file->size(9999999)->Extension('jpg,png,jpeg'>Exist();
+  $file->size(9999999)->Extension('jpg,png,jpeg')->Exist();
         // New Name (Only for signl File upload)
   $file->setName('myfile');
         // Get Name
@@ -52,8 +52,12 @@ Multi File Upload
         // Get Extension
   $file->getExtension();
   
+        //compress images (only images)
+  $quality = 75;
+  $file->compress($quality);
+  
   
 ```
 
 ## contribution
-  any contribution is welcome
+  any contribution will be welcomed
