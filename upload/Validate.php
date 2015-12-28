@@ -4,14 +4,14 @@ namespace upload;
 class Validate extends FileInfo implements ValidateInterface
 {
 
-  public $errors = array();
+  public $Errors = array();
 
   function __construct($FilePath)
   {
     if (is_uploaded_file($FilePath)) {
       parent::__construct($FilePath);
     } else {
-      $errors[] = "Files Was Not Uploaded";
+      $Errors[] = "Files Was Not Uploaded";
     }
   }
 
@@ -35,7 +35,7 @@ class Validate extends FileInfo implements ValidateInterface
   public function Exist()
   {
       if (!$this->getName()) {
-        $this->errors[] = "File was Not selected";
+        $this->Errors[] = "File was Not selected";
       }
     return $this;
   }

@@ -9,17 +9,20 @@ class MultiFile
   function __construct($key)
   {
     for ($i=0; $i < count($_FILES[$key]['name']); $i++) {
-      $data = array(
-        'name' => $_FILES[$key]['name'][$i],
-        'tmp_name' => $_FILES[$key]['tmp_name'][$i]
-        );
-      $this->Files[] = new File($key, $data);
+      if (is_uploaded_file($_FILES[$key]['tmp_name'][$i])) {
+        $data = array(
+          'name' => $_FILES[$key]['name'][$i],
+          'tmp_name' => $_FILES[$key]['tmp_name'][$i]
+          );
+        $this->Files[] = new File($key, $data);
+      }
     }
   }
 
   public function Upload($newPath)
   {
-    if (empty($this->errors)) {
+    $returns = array();
+    if (empty($this->Errors)) {
       foreach ($this->Files as $File ) {
         $returns[] = $File->Upload($newPath);
       }
@@ -51,6 +54,14 @@ class MultiFile
 		  $File->Exist();
 	  }
 	  return $this;
+  }
+
+  public function Compress($quality)
+  {
+    foreach ($this->Files as $File ) {
+      $File->Compress($quality);
+    }
+    return $this;
   }
 
   public function getErrors()

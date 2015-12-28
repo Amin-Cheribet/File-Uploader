@@ -15,8 +15,7 @@ class File extends Validate
     $FilePath = $File['tmp_name'];
     $FileName = explode(".", $File["name"]);
     $this->setName($FileName[0]);
-    $this->setExtension(strtolower(end(explode(".", $File["name"]))));
-
+    $this->setExtension(strtolower(end($FileName)));
     parent::__construct($FilePath);
   }
 

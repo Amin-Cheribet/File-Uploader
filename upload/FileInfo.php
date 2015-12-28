@@ -51,7 +51,7 @@ class FileInfo implements FileInfoInterface
 		$this->TmpName = $TmpName;
 	}
 
-	public function compress($quality)
+	public function Compress($quality)
 	{
 		$info = getimagesize($this->TmpName);
 
