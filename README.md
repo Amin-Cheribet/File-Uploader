@@ -2,8 +2,8 @@
 
 Simple Easy To use PHP File Uploader
 
-## How To Use : 
-### Html : 
+## How To Use :
+### Html :
 ```html
 
 Single File Upload
@@ -23,24 +23,24 @@ Multi File Upload
 </form>
 ```
 
-### PHP : 
+### PHP :
 
 ```php
 <?php
     // Basic Use :
   require 'autoload.php';
-  
+
   // single File upload
-  
+
   $file = new upload\File('myfile');
   $file->Upload('/MyDirectory');
-  
+
   // Multi File upload
-  
+
   $file = new upload\MultiFile('myfiles');
   $file = upload('/MyDirectory');
-  // optional 
-  
+  // optional
+
         // validation  max Size Allowed Extensions and if user selected a file
   $file->Size(9999999)->Extension('jpg,png,jpeg')->Exist();
         // New Name (Only for signl File upload)
@@ -51,12 +51,12 @@ Multi File Upload
   $file->setExtension('pdf');
         // Get Extension
   $file->getExtension();
-  
+
         //compress images (only images)
   $quality = 75;
-  $file->compress($quality);
-  
-  
+  $file->Compress($quality);
+
+
 ```
 
 ## contribution
