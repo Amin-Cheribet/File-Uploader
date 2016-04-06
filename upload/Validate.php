@@ -18,7 +18,7 @@ class Validate extends FileInfo implements ValidateInterface
   public function Size($AllowedSize)
   {
     if($this->getSize() > $AllowedSize) {
-      $this->errors[] = "File size Not Allowed : ".$this->getName();
+      $this->Errors[] = "File size Not Allowed : ".$this->getName();
     }
     return $this;
   }
@@ -28,7 +28,7 @@ class Validate extends FileInfo implements ValidateInterface
     $AllowedExtension = explode(",", $AllowedExtension);
     $AllowedExtension = array_map('strtolower', $AllowedExtension);
       if (!in_array($this->getExtension(), $AllowedExtension) and $this->getExtension()) {
-        $this->errors[] = "Extension Not Allowed ".$this->getExtension();
+        $this->Errors[] = "Extension Not Allowed ".$this->getExtension();
       }
     return $this;
   }

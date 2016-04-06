@@ -22,7 +22,7 @@ class File extends Validate
   public function Upload($newPath)
   {
     if (is_dir($newPath) && is_writable($newPath)) {
-      if (empty($this->errors)) {
+      if (empty($this->Errors)) {
         $Path = $newPath.DIRECTORY_SEPARATOR.$this->getName().'.'.$this->getExtension();
         move_uploaded_file($this->getTmpName(), $Path);
         return array('name' => $this->getName().'.'.$this->getExtension(), 'dir' => $Path);
@@ -30,7 +30,8 @@ class File extends Validate
         return false;
       }
     } else {
-      $this->errors[] = "No access to this directory";
+      $this->Errors[] = "No access to this directory $newPath";
+      return false;
     }
   }
 

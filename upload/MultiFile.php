@@ -22,7 +22,7 @@ class MultiFile
   public function Upload($newPath)
   {
     $returns = array();
-    if (empty($this->Errors)) {
+    if (empty($this->getErrors)) {
       foreach ($this->Files as $File ) {
         $returns[] = $File->Upload($newPath);
       }
@@ -67,7 +67,7 @@ class MultiFile
   public function getErrors()
   {
     foreach ($this->Files as $File ) {
-      $this->Errors = array_merge($this->Errors, $File->errors);
+      $this->Errors = array_merge($this->Errors, $File->Errors);
     }
     $this->Errors = array_unique($this->Errors);
     sort($this->Errors);

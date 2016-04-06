@@ -33,15 +33,41 @@ Multi File Upload
   // single File upload
 
   $file = new upload\File('myfile');
-  $file->Upload('/MyDirectory');
+  $data = $file->Upload('/MyDirectory');
+  // cheking if any problem occured during uploading
+  if (empty($file->Errors)) {
+    var_dump($data);
+  } else {
+    var_dump($file->Errors);
+  }
+
+  /*
+  $data is an array wich includs uploaded file informations
+  $data['name'] -> uploaded file name
+  $data['dir'] -> uploaded file location on server
+  */
 
   // Multi File upload
 
   $file = new upload\MultiFile('myfiles');
-  $file = upload('/MyDirectory');
-  // optional
+  $data = $file->Upload('/MyDirectory');
 
-        // validation  max Size Allowed Extensions and if user selected a file
+  if (in_array(false, $data)) { // if there is some error
+    $Errors = $files->getErrors();
+    var_dump($Errors);
+  } else {              // if every thing went right
+    var_dump($data);
+    /*
+    $data[0]['name'] -> first uploaded file name
+    $data[1]['name'] -> second uploaded file name
+    $data[0]['dir'] -> first uploaded file directory in server
+    $data[1]['dir'] -> second uploaded file directory in server
+    */
+  }
+
+  // optional (before excuting $file->Upload() both multi or single file upload)
+
+        // validation  max Size, Allowed Extensions and if user selected a file
   $file->Size(9999999)->Extension('jpg,png,jpeg')->Exist();
         // New Name (Only for signl File upload)
   $file->setName('myfile');
