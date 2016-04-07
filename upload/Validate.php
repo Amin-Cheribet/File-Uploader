@@ -11,7 +11,7 @@ class Validate extends FileInfo implements ValidateInterface
     if (is_uploaded_file($FilePath)) {
       parent::__construct($FilePath);
     } else {
-      $Errors[] = "Files Was Not Uploaded";
+      $this->Errors[] = "Files Was Not Uploaded";
     }
   }
 
