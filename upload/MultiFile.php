@@ -22,7 +22,7 @@ class MultiFile
   public function Upload($newPath)
   {
     $returns = array();
-    if (empty($this->getErrors)) {
+    if (empty($this->getErrors())) {
       foreach ($this->Files as $File ) {
         $returns[] = $File->Upload($newPath);
       }
