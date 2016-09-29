@@ -21,6 +21,7 @@ class File extends Validate
 
   public function Upload($newPath)
   {
+    $newPath = $_SERVER["DOCUMENT_ROOT"].'/'.$newPath;
     if (is_dir($newPath) && is_writable($newPath)) {
       if (empty($this->Errors)) {
         $Path = $newPath.DIRECTORY_SEPARATOR.$this->getName().'.'.$this->getExtension();

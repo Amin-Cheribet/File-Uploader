@@ -28,10 +28,11 @@ class Validate extends FileInfo implements ValidateInterface
     $AllowedExtension = explode(",", $AllowedExtension);
     $AllowedExtension = array_map('strtolower', $AllowedExtension);
       if (!in_array($this->getExtension(), $AllowedExtension) and $this->getExtension()) {
-        $this->Errors[] = "Extension Not Allowed ".$this->getExtension();
+        $this->Errors[] = "Extension Not Allowed : ".$this->getExtension();
       }
     return $this;
   }
+    
   public function Exist()
   {
       if (!$this->getName()) {
