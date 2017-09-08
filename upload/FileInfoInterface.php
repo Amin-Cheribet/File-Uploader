@@ -1,6 +1,6 @@
 <?php
 
-namespace upload;
+namespace Upload;
 
 interface FileInfoInterface
 {
