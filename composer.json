@@ -1,0 +1,26 @@
+{
+    "name": "MohamedAmine/File-Uploader",
+    "description": "a light PHP script that upload your files/images with easy steps",
+    "keywords": ["upload", "file", "image"],
+    "type": "library",
+    "license": "MIT",
+
+    "require": {
+        "php": "=>7.0",
+    }
+
+    "authors": [
+        {
+            "name": "Mohamed Amine",
+            "email": "MohamedAmine1c@gmail.com",
+            "homepage": "https://github.com/MohamedAmine-C/File-Uploader",
+            "role": "Developer"
+        }
+    ],
+
+    "autoload": {
+    "psr-4": {
+      "Upload\\":"upload/",
+    }
+  }
+}
