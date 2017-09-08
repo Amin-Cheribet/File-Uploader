@@ -14,10 +14,10 @@ if (isset($_POST['submit'])) {
 
     if (empty($file->Errors)) {
         var_dump($data);
-    /*
-    $data['name'] -> uploaded file name
-    $data['dir'] -> uploaded file directory in server
-    */
+        /*
+        $data['name'] -> uploaded file name
+        $data['dir'] -> uploaded file directory in server
+        */
     } else {
         var_dump($file->Errors);
     }
@@ -40,16 +40,16 @@ if (isset($_POST['submit2'])) {
     $data = $files->Upload($_SERVER['DOCUMENT_ROOT']);
 
     if (in_array(false, $data)) { // if there is some error
-    $Errors = $files->getErrors();
+        $Errors = $files->getErrors();
         var_dump($Errors);
     } else {              // if every thing went right
-    var_dump($data);
-    /*
-    $data[0]['name'] -> first uploaded file name
-    $data[1]['name'] -> second uploaded file name
-    $data[0]['dir'] -> first uploaded file directory in server
-    $data[1]['dir'] -> second uploaded file directory in server
-    */
+        var_dump($data);
+        /*
+        $data[0]['name'] -> first uploaded file name
+        $data[1]['name'] -> second uploaded file name
+        $data[0]['dir'] -> first uploaded file directory in server
+        $data[1]['dir'] -> second uploaded file directory in server
+        */
     }
 }
  ?>
