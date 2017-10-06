@@ -71,6 +71,9 @@ Multi File Upload
 
         // validation  max Size, Allowed Extensions and if user selected a file
   $file->Size(9999999)->Extension('jpg,png,jpeg')->Exist();
+        //compress images (only images)
+  $quality = 75;
+  $file->Compress($quality);
   
   // options available only for single file upload
         // New Name 
@@ -82,9 +85,7 @@ Multi File Upload
         // Get Extension
   $file->getExtension();
 
-        //compress images (only images)
-  $quality = 75;
-  $file->Compress($quality);
+        
 
 
 ```
