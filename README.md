@@ -1,7 +1,8 @@
 # File-Uploader
 
 Simple Easy To use PHP File Uploader
-
+## install Via composer :
+```composer require mohamed-amine/file-uploader```
 ## How To Use :
 ### Html :
 ```html
@@ -29,22 +30,23 @@ Multi File Upload
 <?php
     // Basic Use :
   require 'autoload.php';
-
+    // For composer users :
+  require 'vendor/autoload.php';
+  
   // single File upload
 
   $file = new upload\File('myfile');
   $data = $file->Upload('/MyDirectory');
+  
   // cheking if any problem occured during uploading
-  if (empty($file->Errors)) {
-    var_dump($data);
-  } else {
-    var_dump($file->Errors);
+  if (!empty($file->Errors)) {
+    //$file->Errors is an array that contain errors occured
   }
 
   /*
-  $data is an array wich includs uploaded file informations
+  $data is an array wich contains uploaded file informations
   $data['name'] -> uploaded file name
-  $data['dir'] -> uploaded file location on server
+  $data['dir'] -> uploaded file location (directory) on server
   */
 
   // Multi File upload
@@ -56,11 +58,11 @@ Multi File Upload
     $Errors = $files->getErrors();
     var_dump($Errors);
   } else {              // if every thing went right
-    var_dump($data);
     /*
     $data[0]['name'] -> first uploaded file name
-    $data[1]['name'] -> second uploaded file name
     $data[0]['dir'] -> first uploaded file directory in server
+    
+    $data[1]['name'] -> second uploaded file name
     $data[1]['dir'] -> second uploaded file directory in server
     */
   }
@@ -69,7 +71,9 @@ Multi File Upload
 
         // validation  max Size, Allowed Extensions and if user selected a file
   $file->Size(9999999)->Extension('jpg,png,jpeg')->Exist();
-        // New Name (Only for signl File upload)
+  
+  // options available only for single file upload
+        // New Name 
   $file->setName('myfile');
         // Get Name
   $file->getName();
