@@ -1,6 +1,6 @@
 <?php
 require 'autoload.php';
-
+error_reporting(-1);
 // Single file upload test
 
 if (isset($_POST['submit'])) {
@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
     }
 }
 
- ?>
+    ?>
 <form action="#" method="post" enctype="multipart/form-data">
   <input type="file" name="myfile"><br>
 
@@ -35,11 +35,11 @@ if (isset($_POST['submit'])) {
 if (isset($_POST['submit2'])) {
     $files = new upload\MultiFile('myfiles');
 
-    $files->Size(99900999)->Extension('png,jpg')->Compress(70);
+    $files->size(99900999)->extension('png,jpg')->compress(70)->min(3)->max(3);
+    $files->setNames(['amine','test','mohamed']);
 
     $data = $files->Upload($_SERVER['DOCUMENT_ROOT']);
-
-    if (in_array(false, $data)) { // if there is some error
+    if (!$data) { // if there is some error
         $Errors = $files->getErrors();
         var_dump($Errors);
     } else {              // if every thing went right
@@ -52,7 +52,7 @@ if (isset($_POST['submit2'])) {
         */
     }
 }
- ?>
+    ?>
 
  <form method="POST" enctype="multipart/form-data">
      <input type="file" name="myfiles[]"/><br>

@@ -4,9 +4,9 @@ namespace Upload;
 
 interface ValidateInterface
 {
-    public function Size($AllowedSize);
+    public function size(int $allowedSize);
 
-    public function Extension($AllowedExtension);
+    public function extension(string $allowedExtension);
 
-    public function Exist();
+    public function exist();
 }
