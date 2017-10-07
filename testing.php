@@ -36,7 +36,7 @@ if (isset($_POST['submit2'])) {
     $files = new upload\MultiFile('myfiles');
 
     $files->size(99900999)->extension('png,jpg')->compress(70)->min(3)->max(3);
-    $files->setNames(['amine','test','mohamed']);
+    $files->setNames(['amine', 'test', 'mohamed']);
 
     $data = $files->Upload($_SERVER['DOCUMENT_ROOT']);
     if (!$data) { // if there is some error
