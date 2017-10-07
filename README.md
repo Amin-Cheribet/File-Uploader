@@ -69,22 +69,31 @@ Multi File Upload
 
   // optional (before excuting $file->upload() both multi or single file upload)
 
+        // compress images (images only)
+  $quality = 75;
+  $file->compress($quality);
+
         // validation  max Size, Allowed Extensions and if user selected a file
   $file->Size(9999999)->Extension('jpg,png,jpeg')->Exist();
 
         // Get Name of single / multi files
-  $file->getName();  $file->getNames();
+  $file->getName(); // for single file return string
+  $file->getNames(); // for multi files return array
+
         // Get Extension of single / multi files
-  $file->getExtension();  $file->getExtensions();
+  $file->getExtension(); // for single file return string
+  $file->getExtensions(); // for multi files return array
+
         // Set Name for single / Multi files
-  $file->setName('myname');  $file->setNames(['first', 'second', third]);
+  $file->setName('myname'); // for single file
+  $file->setNames(['first', 'second', third]); // for multi files
 
 
   // options available only for single file upload
         // New Extension
   $file->setExtension('pdf');
 
-        
+
 
 
 ```
