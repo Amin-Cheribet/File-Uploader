@@ -101,7 +101,7 @@ class MultiFile
 
     public function setNames(array $names)
     {
-        for ($i=0; $i < count($this->files); $i++) {
+        for ($i = 0; $i < count($this->files); $i++) {
             $this->files[$i]->setName($names[$i]);
         }
     }
@@ -109,7 +109,7 @@ class MultiFile
     public function getNames()
     {
         $names = [];
-        for ($i=0; $i < count($this->files); $i++) {
+        for ($i = 0; $i < count($this->files); $i++) {
             $names[] = $this->files[$i]->getname();
         }
     }
@@ -118,7 +118,7 @@ class MultiFile
     {
         $extensions = [];
         foreach ($files as $file) {
-            $extensions  = $file->getExtension();
+            $extensions = $file->getExtension();
         }
 
         return $extensions;

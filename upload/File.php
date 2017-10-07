@@ -29,6 +29,7 @@ class File extends Validate
                 return ['name' => $this->getName().'.'.$this->getExtension(), 'dir' => $path];
             } else {
                 $this->Errors[] = 'some errors accured during uploading';
+
                 return false;
             }
         } else {
