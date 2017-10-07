@@ -71,6 +71,7 @@ Multi File Upload
 
         // validation  max Size, Allowed Extensions and if user selected a file
   $file->Size(9999999)->Extension('jpg,png,jpeg')->Exist();
+
         // Get Name of single / multi files
   $file->getName();  $file->getNames();
         // Get Extension of single / multi files
@@ -78,13 +79,12 @@ Multi File Upload
         // Set Name for single / Multi files
   $file->setName('myname');  $file->setNames(['first', 'second', third]);
 
+
   // options available only for single file upload
         // New Extension
   $file->setExtension('pdf');
 
-        //compress images (only images)
-  $quality = 75;
-  $file->Compress($quality);
+        
 
 
 ```
