@@ -4,7 +4,7 @@ namespace Upload;
 
 class MultiFile
 {
-    public $Files = [];
+    public $files = [];
     public $Errors = [];
 
     public function __construct($key)
@@ -12,20 +12,20 @@ class MultiFile
         for ($i = 0; $i < count($_FILES[$key]['name']); $i++) {
             if (is_uploaded_file($_FILES[$key]['tmp_name'][$i])) {
                 $data = [
-          'name'     => $_FILES[$key]['name'][$i],
-          'tmp_name' => $_FILES[$key]['tmp_name'][$i],
-          ];
-                $this->Files[] = new File($key, $data);
+                'name'     => $_FILES[$key]['name'][$i],
+                'tmp_name' => $_FILES[$key]['tmp_name'][$i],
+                ];
+                $this->files[] = new File($key, $data);
             }
         }
     }
 
-    public function Upload($newPath)
+    public function upload($newPath)
     {
         $returns = [];
         if (empty($this->getErrors())) {
-            foreach ($this->Files as $File) {
-                $returns[] = $File->Upload($newPath);
+            foreach ($this->files as $file) {
+                $returns[] = $file->Upload($newPath);
             }
 
             return $returns;
@@ -34,37 +34,55 @@ class MultiFile
         }
     }
 
-    public function Size($size)
+    public function size($size)
     {
-        foreach ($this->Files as $File) {
-            $File->Size($size);
+        foreach ($this->files as $file) {
+            $file->Size($size);
         }
 
         return $this;
     }
 
-    public function Extension($AllowedExtensions)
+    public function extension($allowedExtensions)
     {
-        foreach ($this->Files as $File) {
-            $File->Extension($AllowedExtensions);
+        foreach ($this->files as $file) {
+            $file->extension($allowedExtensions);
         }
 
         return $this;
     }
 
-    public function Exist()
+    public function exist()
     {
-        foreach ($this->Files as $File) {
-            $File->Exist();
+        foreach ($this->files as $file) {
+            $file->exist();
         }
 
         return $this;
     }
 
-    public function Compress($quality)
+    public function compress(int $quality)
     {
-        foreach ($this->Files as $File) {
-            $File->Compress($quality);
+        foreach ($this->files as $file) {
+            $file->compress($quality);
+        }
+
+        return $this;
+    }
+
+    public function max(int $max)
+    {
+        if (count($this->files) > $max) {
+            $this->Errors[] = "Please select Less than $max";
+        }
+
+        return $this;
+    }
+
+    public function min(int $min)
+    {
+        if (count($this->files) < $min) {
+            $this->Errors[] = "Please select More than $min";
         }
 
         return $this;
@@ -72,12 +90,37 @@ class MultiFile
 
     public function getErrors()
     {
-        foreach ($this->Files as $File) {
-            $this->Errors = array_merge($this->Errors, $File->Errors);
+        foreach ($this->files as $file) {
+            $this->Errors = array_merge($this->Errors, $file->Errors);
         }
         $this->Errors = array_unique($this->Errors);
         sort($this->Errors);
 
         return $this->Errors;
+    }
+
+    public function setNames(array $names)
+    {
+        for ($i = 0; $i < count($this->files); $i++) {
+            $this->files[$i]->setName($names[$i]);
+        }
+    }
+
+    public function getNames()
+    {
+        $names = [];
+        for ($i = 0; $i < count($this->files); $i++) {
+            $names[] = $this->files[$i]->getname();
+        }
+    }
+
+    public function getExtensions()
+    {
+        $extensions = [];
+        foreach ($files as $file) {
+            $extensions = $file->getExtension();
+        }
+
+        return $extensions;
     }
 }

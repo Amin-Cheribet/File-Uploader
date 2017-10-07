@@ -4,30 +4,32 @@ namespace Upload;
 
 class File extends Validate
 {
-    public function __construct($key, $File = false)
+    public function __construct($key, $file = false)
     {
-        if (!$File) {
-            $File = [
+        if (!$file) {
+            $file = [
                 'name'     => $_FILES[$key]['name'],
                 'tmp_name' => $_FILES[$key]['tmp_name'],
             ];
         }
-        $FilePath = $File['tmp_name'];
-        $FileName = explode('.', $File['name']);
-        $this->setName($FileName[0]);
-        $this->setExtension(strtolower(end($FileName)));
-        parent::__construct($FilePath);
+        $filePath = $file['tmp_name'];
+        $fileName = explode('.', $file['name']);
+        $this->setName(uniqid());
+        $this->setExtension(strtolower(end($fileName)));
+        parent::__construct($filePath);
     }
 
-    public function Upload($newPath)
+    public function upload(string $newPath)
     {
         if (is_dir($newPath) && is_writable($newPath)) {
             if (empty($this->Errors)) {
-                $Path = $newPath.DIRECTORY_SEPARATOR.$this->getName().'.'.$this->getExtension();
-                move_uploaded_file($this->getTmpName(), $Path);
+                $path = $newPath.DIRECTORY_SEPARATOR.$this->getName().'.'.$this->getExtension();
+                move_uploaded_file($this->getTmpName(), $path);
 
-                return ['name' => $this->getName().'.'.$this->getExtension(), 'dir' => $Path];
+                return ['name' => $this->getName().'.'.$this->getExtension(), 'dir' => $path];
             } else {
+                $this->Errors[] = 'some errors accured during uploading';
+
                 return false;
             }
         } else {
