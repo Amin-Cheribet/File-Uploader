@@ -26,6 +26,7 @@ Multi File Upload
 
 ### PHP :
 
+### Single File upload:
 ```php
 <?php
     // Basic Use :
@@ -36,39 +37,44 @@ Multi File Upload
   // single File upload
 
   $file = new upload\File('myfile');
-  $data = $file->Upload('/MyDirectory');
-
-  // cheking if any problem occured during uploading
-  if (!empty($file->Errors)) {
-    //$file->Errors is an array that contain errors occured
-  }
-
+  $data = $file->Upload('/WhereToUpload');
+  
   /*
   $data is an array wich contains uploaded file informations
   $data['name'] -> uploaded file name
   $data['dir'] -> uploaded file location (directory) on server
   */
-
-  // Multi File upload
-
+  
+  // cheking if any problem occured during uploading
+  if (!empty($file->Errors)) {
+    //$file->Errors is an array that contain errors occured
+  }
+  
+```
+  ### Multi-Files upload:
+```php
   $file = new upload\MultiFile('myfiles');
-  $data = $file->Upload('/MyDirectory');
-
-  if (in_array(false, $data)) { // if there is some error
+  $data = $file->Upload('/WhereToUpload');
+  
+//checking errors
+  if (in_array(false, $data)) { 
     $Errors = $files->getErrors();
     var_dump($Errors);
-  } else {              // if every thing went right
+  } 
+  
     /*
+    $data is an array that contain each file infos
+    
     $data[0]['name'] -> first uploaded file name
     $data[0]['dir'] -> first uploaded file directory in server
 
     $data[1]['name'] -> second uploaded file name
     $data[1]['dir'] -> second uploaded file directory in server
     */
-  }
-
-  // optional (before excuting $file->upload() both multi or single file upload)
-
+  
+```
+ ### Other Operations (before excuting $file->upload() both multi or single file upload)
+```php
         // compress images (images only)
   $quality = 75;
   $file->compress($quality);
@@ -78,11 +84,11 @@ Multi File Upload
 
         // Get Name of single / multi files
   $file->getName(); // for single file return string
-  $file->getNames(); // for multi files return array
+  $file->getNames(); // for multi files returns an array of names
 
         // Get Extension of single / multi files
   $file->getExtension(); // for single file return string
-  $file->getExtensions(); // for multi files return array
+  $file->getExtensions(); // for multi files returns an array of extensions
 
         // Set Name for single / Multi files
   $file->setName('myname'); // for single file
@@ -93,10 +99,7 @@ Multi File Upload
         // New Extension
   $file->setExtension('pdf');
 
-
-
-
 ```
 
 ## contribution
-  any contribution will be welcomed
+  any contribution will be welcomed.
