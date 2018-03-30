@@ -8,15 +8,15 @@ class processFileTest extends TestCase
     {
         parent::setUp();
         $_FILES = [
-        'image'    =>  [
-            'name'      =>  ['test.jpg'],
-            'tmp_name'  =>  [__DIR__ . '/helpers/tmpfile'],
-            'type'      =>  ['image/jpeg'],
-            'size'      =>  [182447],
-            'error'     =>  [0],
-        ]
+        'image'    => [
+            'name'      => ['test.jpg'],
+            'tmp_name'  => [__DIR__.'/helpers/tmpfile'],
+            'type'      => ['image/jpeg'],
+            'size'      => [182447],
+            'error'     => [0],
+        ],
     ];
-    copy(__DIR__.'/helpers/testfile', __DIR__.'/helpers/tmpfile');
+        copy(__DIR__.'/helpers/testfile', __DIR__.'/helpers/tmpfile');
     }
 
     public function tearDown()

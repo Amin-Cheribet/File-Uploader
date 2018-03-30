@@ -19,6 +19,7 @@ class File extends \SplFileInfo
     public function getExtension(): string
     {
         $explodedName = explode('.', $this->userFileName);
+
         return end($explodedName);
     }
 
