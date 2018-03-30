@@ -27,10 +27,10 @@ class FileProcessor
                     break;
                 case 'image/png':
                     $image = imagecreatefrompng($file->getPathname());
-                    imagepng($image, $file->getPathname(), $quality/10);
+                    imagepng($image, $file->getPathname(), $quality / 10);
                     break;
                 default:
-                    throw new \Exception("compress can only be applied to images", 43);
+                    throw new \Exception('compress can only be applied to images', 43);
                     break;
             }
         }
@@ -60,7 +60,7 @@ class FileProcessor
                     imagepng($scaledImage, $file->getPathname());
                     break;
                 default:
-                    throw new \Exception("compress can only be applied to images", 43);
+                    throw new \Exception('compress can only be applied to images', 43);
                     break;
             }
         }

@@ -20,8 +20,8 @@ class Validator
     public function size(float $min, float $max): self
     {
         foreach ($this->filesCollection as $file) {
-            if ($file->getSize() < $min*pow(1024,2) or $file->getSize() > $max*pow(1024,2)) {
-                $this->errors[] = substr($file->getUserFileName(),0 , 10)." file size must be between: $min MB & $max MB";
+            if ($file->getSize() < $min * pow(1024, 2) or $file->getSize() > $max * pow(1024, 2)) {
+                $this->errors[] = substr($file->getUserFileName(), 0, 10)." file size must be between: $min MB & $max MB";
             }
         }
 
@@ -32,7 +32,7 @@ class Validator
     {
         foreach ($this->filesCollection as $file) {
             if (!in_array($file->getExtension(), $extensions)) {
-                $this->errors[] = $file->getUserFileName()." Allowed extensions are: ".implode(', ', $extensions);
+                $this->errors[] = $file->getUserFileName().' Allowed extensions are: '.implode(', ', $extensions);
             }
         }
 
@@ -46,7 +46,7 @@ class Validator
             $this->errors[] = "Minimum files required is: $min";
         }
         if (!is_null($max) && $number > $max) {
-            throw new \Exception("trying to upload over limited number of files", 39);
+            throw new \Exception('trying to upload over limited number of files', 39);
         }
 
         return $this;
