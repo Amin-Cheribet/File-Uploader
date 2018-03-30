@@ -18,7 +18,7 @@ class FilesCollection extends \ArrayIterator
 
     private function reorganiseFilesData(array $files): \Generator
     {
-        for ($i=0; $i < count($files['name']); $i++) {
+        for ($i = 0; $i < count($files['name']); $i++) {
             if (strlen($files['tmp_name'][$i]) > 0) {
                 yield [
                     'name'     => $files['name'][$i],

@@ -8,15 +8,15 @@ class validationTest extends TestCase
     {
         parent::setUp();
         $_FILES = [
-        'image'    =>  [
-            'name'      =>  ['test.jpg'],
-            'tmp_name'  =>  [__DIR__ . '/helpers/tmpfile'],
-            'type'      =>  ['image/jpeg'],
-            'size'      =>  [182447],
-            'error'     =>  [0],
-        ]
+        'image'    => [
+            'name'      => ['test.jpg'],
+            'tmp_name'  => [__DIR__.'/helpers/tmpfile'],
+            'type'      => ['image/jpeg'],
+            'size'      => [182447],
+            'error'     => [0],
+        ],
     ];
-    copy(__DIR__.'/helpers/testfile', __DIR__.'/helpers/tmpfile');
+        copy(__DIR__.'/helpers/testfile', __DIR__.'/helpers/tmpfile');
     }
 
     public function tearDown()
@@ -52,9 +52,9 @@ class validationTest extends TestCase
     public function testBetweenNumber()
     {
         $file = new Upload\Upload('image');
-        $file->validate()->number(1,3);
+        $file->validate()->number(1, 3);
         $this->assertTrue($file->isValide());
-        $file->validate()->number(2,5);
+        $file->validate()->number(2, 5);
         $this->assertFalse($file->isValide());
     }
 }
