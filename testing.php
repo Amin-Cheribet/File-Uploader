@@ -14,10 +14,10 @@ if (isset($_POST['submit'])) {
 
     if (empty($file->Errors)) {
         var_dump($data);
-        /*
-        $data['name'] -> uploaded file name
-        $data['dir'] -> uploaded file directory in server
-        */
+    /*
+    $data['name'] -> uploaded file name
+    $data['dir'] -> uploaded file directory in server
+    */
     } else {
         var_dump($file->Errors);
     }
