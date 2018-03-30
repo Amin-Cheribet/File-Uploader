@@ -5,14 +5,14 @@ namespace Upload;
 class Upload
 {
     private $filesCollection;
-    private $filesData         = [];
+    private $filesData = [];
     private $uploadedFilesData = [];
 
     public function __construct(string $field)
     {
         $this->filesCollection = new FilesCollection($field);
-        $this->validator       = new Validator($this->filesCollection);
-        $this->FileProcessor   = new FileProcessor($this->filesCollection);
+        $this->validator = new Validator($this->filesCollection);
+        $this->FileProcessor = new FileProcessor($this->filesCollection);
     }
 
     public function process()
