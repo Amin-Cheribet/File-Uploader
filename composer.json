@@ -1,12 +1,13 @@
 {
     "name": "mohamed-amine/file-uploader",
-    "description": "a light PHP script that upload your files/images with easy steps",
+    "description": "a light PHP script that upload your files/images with easy steps & some cool features like compression & resizing",
     "keywords": ["upload", "file", "image"],
     "type": "library",
     "license": "MIT",
 
     "require": {
-        "php": ">=7.0"
+        "php": ">=7.1.6",
+        "phpunit/phpunit": ">=6.0"
     },
 
     "authors": [
@@ -20,7 +21,7 @@
 
     "autoload": {
     "psr-4": {
-      "Upload\\":"upload/"
+      "Upload\\":"src/"
     }
   }
 }
