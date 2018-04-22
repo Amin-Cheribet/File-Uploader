@@ -26,6 +26,16 @@ $file = Upload\Upload('myfile');
 
 // upload files to defined directory
 $file->save('myDirectory');
+
+$data = $file->getUploadedFilesData();
+var_dump($data);
+
+// this will output an array which contains uploaded files data
+// [
+//      'id' => 'sf23s6sdf23s',
+//      'name' => 'myFileName',
+//      'path' => 'document/images/photo.jpg'
+// ]
 ```
 
  ### Validation:
@@ -43,6 +53,9 @@ $file->extension(['jpg', 'gif'])->size(0.5, 10)->number(2);
 if ($file->isValide()) {
     var_dump($file->getErrors();
 }
+
+// upload files
+$file->save('myDirectory');
 ```
 
 ### Processing uploaded files:
@@ -61,6 +74,7 @@ $file->compress(75);
 $file->resize(500, 800);
 $file->setName(['firstname', 'secondname']);
 
+$file->save('myDirectory');
 ```
 ## contribution
   any contribution will be welcomed.
