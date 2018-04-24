@@ -47,7 +47,7 @@ var_dump($data);
 $file = Upload\Upload('myfile');
 
 // validate
-$file->extension(['jpg', 'gif'])->size(0.5, 10)->number(2);
+$file->validate()->extension(['jpg', 'gif'])->size(0.5, 10)->number(2);
 
 // check for validation errors
 if ($file->isValide()) {
@@ -66,13 +66,13 @@ currently only images can be processed, available methods are:
 - setName(array $names)
 
 ```php
-$file->compress(75)->resize(500, 800)->setName(['firstname', 'secondname']);
+$file->process()->compress(75)->resize(500, 800)->setName(['firstname', 'secondname']);
 
 // or
 
-$file->compress(75);
-$file->resize(500, 800);
-$file->setName(['firstname', 'secondname']);
+$file->process()->compress(75);
+$file->process()->resize(500, 800);
+$file->process()->setName(['firstname', 'secondname']);
 
 $file->save('myDirectory');
 ```
