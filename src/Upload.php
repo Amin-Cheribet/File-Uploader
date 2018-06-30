@@ -15,7 +15,15 @@ class Upload
         $this->FileProcessor = new FileProcessor($this->filesCollection);
     }
 
-    public function process()
+    public function exist(): bool
+    {
+        if ($this->filesCollection->count() > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public function process(): FileProcessor
     {
         return $this->FileProcessor;
     }
@@ -40,9 +48,9 @@ class Upload
         return $this->uploadedFilesData;
     }
 
-    public function save(string $dir): void
+    public function save(string $dir)
     {
-        if (!is_dir($dir) or !is_writable($dir)) {
+        if (is_dir($dir) or is_writable($dir)) {
             throw new \Exception("can't write files in $dir", 41);
         }
 
@@ -53,11 +61,12 @@ class Upload
                 throw new \Exception("Error during uploading $path", 42);
             }
 
-            $this->uploadedFilesData[] = [
+            $this->uploadedFilesData[] = (object)[
                 'id'   => uniqid(),
                 'name' => $file->getName(),
                 'path' => $path,
             ];
         }
+        return $this->uploadedFilesData;
     }
 }

@@ -23,7 +23,7 @@ class File extends \SplFileInfo
         return end($explodedName);
     }
 
-    public function getUserFileName()
+    public function getUserFileName(): string
     {
         return $this->userFileName;
     }
