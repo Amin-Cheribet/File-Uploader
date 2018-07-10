@@ -5,16 +5,24 @@ Simple Easy To use PHP File Uploader
 ```composer require mohamed-amine/file-uploader```
 ## How To Use :
 #### Html :
+##### Single file upload :
 ```html
-NOTE: you must always use '[]' after the name in html for both single and multi file uploads
 
 <form method="POST" enctype="multipart/form-data">
-    <input type="file" name="myfile[]" /><br>
+    <input type="file" name="myfile" /><br>
     <input type="submit" value="Upload File"/>
 </form>
 
 ```
-
+##### Multi files upload :
+```html
+<form method="POST" enctype="multipart/form-data">
+    <input type="file" name="myfile[]" /><br>
+    <input type="file" name="myfile[]" /><br>
+    <input type="file" name="myfile[]" /><br>
+    <input type="submit" value="Upload File"/>
+</form>
+```
 ### Simple File upload:
 
 NOTE: every validation or other process should be done before uploading (calling save() method).
