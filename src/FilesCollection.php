@@ -18,6 +18,19 @@ class FilesCollection extends \ArrayIterator
 
     private function reorganiseFilesData(array $files): \Generator
     {
+        if (is_array($files['name'])) {
+            return $this->setMultiFiles($files);
+        }
+
+        if (!is_array($files['name'])) {
+            return $this->setSingleFile($files);
+        }
+
+        throw new \Exception("Input data Error", 1);
+    }
+
+    private function setMultiFiles(array $files)
+    {
         for ($i = 0; $i < count($files['name']); $i++) {
             if (strlen($files['tmp_name'][$i]) > 0) {
                 yield [
@@ -27,6 +40,15 @@ class FilesCollection extends \ArrayIterator
                 ];
             }
         }
+    }
+
+    private function setSingleFile(array $file)
+    {
+        yield [
+            'name'     => $file['name'],
+            'tmp_name' => $file['tmp_name'],
+            'type'     => $file['type'],
+        ];
     }
 
     private function fillFilesCollection(\Generator $filesData): void
