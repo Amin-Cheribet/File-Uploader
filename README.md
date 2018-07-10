@@ -33,9 +33,8 @@ NOTE: every validation or other process should be done before uploading (calling
 $file = Upload\Upload('myfile');
 
 // upload files to defined directory
-$file->save('myDirectory');
+$data = $file->save('myDirectory');
 
-$data = $file->getUploadedFilesData();
 var_dump($data);
 
 // this will output an array which contains uploaded files data
