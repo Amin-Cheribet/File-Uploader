@@ -20,6 +20,7 @@ class Upload
         if ($this->filesCollection->count() > 0) {
             return true;
         }
+
         return false;
     }
 
@@ -61,12 +62,13 @@ class Upload
                 throw new \Exception("Error during uploading $path", 42);
             }
 
-            $this->uploadedFilesData[] = (object)[
+            $this->uploadedFilesData[] = (object) [
                 'id'   => uniqid(),
                 'name' => $file->getName(),
                 'path' => $path,
             ];
         }
+
         return $this->uploadedFilesData;
     }
 }
