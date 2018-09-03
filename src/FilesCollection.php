@@ -26,7 +26,7 @@ class FilesCollection extends \ArrayIterator
             return $this->setSingleFile($files);
         }
 
-        throw new \Exception("Input data Error", 1);
+        throw new \Exception('Input data Error', 1);
     }
 
     private function setMultiFiles(array $files)
