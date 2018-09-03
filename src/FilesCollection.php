@@ -26,7 +26,7 @@ class FilesCollection extends \ArrayIterator
             return $this->setSingleFile($files);
         }
 
-        throw new \Exception('Input data Error', 1);
+        throw new \Exception("Input data Error", 1);
     }
 
     private function setMultiFiles(array $files)
@@ -44,11 +44,13 @@ class FilesCollection extends \ArrayIterator
 
     private function setSingleFile(array $file)
     {
-        yield [
-            'name'     => $file['name'],
-            'tmp_name' => $file['tmp_name'],
-            'type'     => $file['type'],
-        ];
+        if ($file['size'] !== 0) {
+            yield [
+                'name'     => $file['name'],
+                'tmp_name' => $file['tmp_name'],
+                'type'     => $file['type'],
+            ];
+        }
     }
 
     private function fillFilesCollection(\Generator $filesData): void
