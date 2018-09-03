@@ -20,7 +20,6 @@ class Upload
         if ($this->filesCollection->count() > 0) {
             return true;
         }
-
         return false;
     }
 
@@ -51,24 +50,22 @@ class Upload
 
     public function save(string $dir)
     {
-        if (is_dir($dir) or is_writable($dir)) {
+        if (!is_dir($dir) or !is_writable($dir)) {
             throw new \Exception("can't write files in $dir", 41);
         }
 
         foreach ($this->filesCollection as $file) {
             $path = $dir.DIRECTORY_SEPARATOR.$file->getName().'.'.$file->getExtension();
-
             if (!move_uploaded_file($file->getPathName(), $path)) {
                 throw new \Exception("Error during uploading $path", 42);
             }
 
-            $this->uploadedFilesData[] = (object) [
+            $this->uploadedFilesData[] = (object)[
                 'id'   => uniqid(),
                 'name' => $file->getName(),
                 'path' => $path,
             ];
         }
-
         return $this->uploadedFilesData;
     }
 }
