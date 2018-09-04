@@ -37,4 +37,22 @@ class processFileTest extends TestCase
         $image->process()->resize(300, 100);
         $this->assertNotEquals(getimagesize(__DIR__.'/helpers/tmpfile'), getimagesize(__DIR__.'/helpers/testfile'));
     }
+
+    public function testSetNames()
+    {
+        $image = new \Upload\Upload('image');
+        $image->process()->setNames(['hi']);
+        // geting the private property 'filesCollection'
+        $imageReflection = new ReflectionClass($image);
+        $property = $imageReflection->getProperty('filesCollection');
+        $property->setAccessible(true);
+        $filesCollection = $property->getValue($image);
+        // getting the private property from filesCollection 'definedFileName'
+        $filesCollectionReflection = new ReflectionClass($filesCollection[0]);
+        $property = $filesCollectionReflection->getProperty('definedFileName');
+        $property->setAccessible(true);
+        $definedFileName = $property->getValue($filesCollection[0]);
+
+        $this->assertEquals($definedFileName, 'hi');
+    }
 }
