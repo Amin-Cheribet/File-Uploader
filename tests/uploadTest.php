@@ -25,25 +25,25 @@ class uploadTest extends TestCase
         'images' => [
             'name' => [
                 'file1.jpg',
-                'file2.jpg'
+                'file2.jpg',
             ],
             'type' => [
                 'image/jpeg',
-                'image/jpeg'
+                'image/jpeg',
             ],
             'tmp_name' => [
                 'tmpname',
-                'tmpname'
+                'tmpname',
             ],
             'error' => [
                 0,
-                0
+                0,
             ],
             'size' => [
                 654645,
-                54568
-            ]
-        ]
+                54568,
+            ],
+        ],
         ];
         copy(__DIR__.'/helpers/testfile', __DIR__.'/helpers/tmpfile');
     }
