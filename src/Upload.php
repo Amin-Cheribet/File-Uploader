@@ -5,14 +5,14 @@ namespace Upload;
 class Upload
 {
     private $filesCollection;
-    private $filesData         = [];
+    private $filesData = [];
     private $uploadedFilesData = [];
 
     public function __construct(string $field)
     {
         $this->filesCollection = new FilesCollection($field);
-        $this->validator       = new Validator($this->filesCollection);
-        $this->FileProcessor   = new FileProcessor($this->filesCollection);
+        $this->validator = new Validator($this->filesCollection);
+        $this->FileProcessor = new FileProcessor($this->filesCollection);
     }
 
     public function exist(): bool
@@ -20,6 +20,7 @@ class Upload
         if ($this->filesCollection->count() > 0) {
             return true;
         }
+
         return false;
     }
 
@@ -60,12 +61,13 @@ class Upload
                 throw new \Exception("Error during uploading $path", 42);
             }
 
-            $this->uploadedFilesData[] = (object)[
+            $this->uploadedFilesData[] = (object) [
                 'id'   => uniqid(),
                 'name' => $file->getName(),
                 'path' => $path,
             ];
         }
+
         return $this->uploadedFilesData;
     }
 }
