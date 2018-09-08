@@ -32,30 +32,37 @@ class uploadTest extends TestCase
                 'image/jpeg',
             ],
             'tmp_name' => [
-                'tmpname',
-                'tmpname',
+                __DIR__.'/helpers/tmpfile1',
+                __DIR__.'/helpers/tmpfile2',
             ],
             'error' => [
                 0,
                 0,
             ],
             'size' => [
-                654645,
-                54568,
+                182447,
+                182447,
             ],
         ],
         ];
         copy(__DIR__.'/helpers/testfile', __DIR__.'/helpers/tmpfile');
+        copy(__DIR__.'/helpers/testfile', __DIR__.'/helpers/tmpfile1');
+        copy(__DIR__.'/helpers/testfile', __DIR__.'/helpers/tmpfile2');
     }
 
     public function tearDown()
     {
         unlink(__DIR__.'/helpers/tmpfile');
+        unlink(__DIR__.'/helpers/tmpfile1');
+        unlink(__DIR__.'/helpers/tmpfile2');
     }
 
     public function testExist()
     {
         $upload = new \Upload\Upload('image');
+        $this->assertTrue($upload->exist());
+
+        $upload = new \Upload\Upload('images');
         $this->assertTrue($upload->exist());
 
         $upload = new \Upload\Upload('image2');
@@ -89,5 +96,9 @@ class uploadTest extends TestCase
         $upload = new \Upload\Upload('image');
         $upload->validate()->size(1, 2)->extension(['mp3']);
         $this->assertTrue(is_array($upload->getErrors()));
+
+        $uploads = new \Upload\UPload('images');
+        $uploads->validate()->size(1, 2)->extension(['mp3']);
+        $this->assertTrue(is_array($uploads->getErrors()));
     }
 }
