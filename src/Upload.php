@@ -5,14 +5,14 @@ namespace Upload;
 class Upload
 {
     private $filesCollection;
-    private $filesData = [];
+    private $filesData         = [];
     private $uploadedFilesData = [];
 
     public function __construct(string $field)
     {
         $this->filesCollection = new FilesCollection($field);
-        $this->validator = new Validator($this->filesCollection);
-        $this->FileProcessor = new FileProcessor($this->filesCollection);
+        $this->validator       = new Validator($this->filesCollection);
+        $this->FileProcessor   = new FileProcessor($this->filesCollection);
     }
 
     public function exist(): bool
@@ -51,15 +51,26 @@ class Upload
 
     public function save(string $dir)
     {
+        $this->verifyDirectory($dir);
+        $this->fillFilesData($dir);
+
+        return $this->resolveFilesData();
+    }
+
+    private function verifyDirectory(string $dir)
+    {
         if (!is_dir($dir) or !is_writable($dir)) {
             throw new \Exception("can't write files in $dir", 41);
         }
+        return true;
+    }
 
+    private function fillFilesData(string $dir)
+    {
         foreach ($this->filesCollection as $file) {
             $path = $dir.DIRECTORY_SEPARATOR.$file->getName().'.'.$file->getExtension();
-            if (!move_uploaded_file($file->getPathName(), $path)) {
-                throw new \Exception("Error during uploading $path", 42);
-            }
+
+            $this->uploadToServer($file->getPathName(), $path);
 
             $this->uploadedFilesData[] = (object) [
                 'id'   => uniqid(),
@@ -67,7 +78,21 @@ class Upload
                 'path' => $path,
             ];
         }
+    }
 
+    private function resolveFilesData()
+    {
+        if (count($this->uploadedFilesData) === 1) {
+            return $this->uploadedFilesData[0];
+        }
         return $this->uploadedFilesData;
+    }
+
+    private function uploadToServer(string $tmpName, string $path)
+    {
+        if (!move_uploaded_file($tmpName, $path)) {
+            die(var_dump($tmpName.' '.$path));
+            throw new \Exception("Error during uploading $path", 42);
+        }
     }
 }
