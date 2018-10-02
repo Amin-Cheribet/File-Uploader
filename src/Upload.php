@@ -5,7 +5,6 @@ namespace Upload;
 class Upload
 {
     private $filesCollection;
-    private $filesData         = [];
     private $uploadedFilesData = [];
 
     public function __construct(string $field)

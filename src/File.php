@@ -4,7 +4,6 @@ namespace Upload;
 
 class File extends \SplFileInfo
 {
-    private $fileName;
     private $userFileName;
     private $definedFileName;
     private $tmpName;
