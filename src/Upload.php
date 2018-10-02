@@ -91,7 +91,6 @@ class Upload
     private function uploadToServer(string $tmpName, string $path)
     {
         if (!move_uploaded_file($tmpName, $path)) {
-            die(var_dump($tmpName.' '.$path));
             throw new \Exception("Error during uploading $path", 42);
         }
     }
