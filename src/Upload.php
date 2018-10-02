@@ -10,8 +10,8 @@ class Upload
     public function __construct(string $field)
     {
         $this->filesCollection = new FilesCollection($field);
-        $this->validator       = new Validator($this->filesCollection);
-        $this->FileProcessor   = new FileProcessor($this->filesCollection);
+        $this->validator = new Validator($this->filesCollection);
+        $this->FileProcessor = new FileProcessor($this->filesCollection);
     }
 
     public function exist(): bool
@@ -61,6 +61,7 @@ class Upload
         if (!is_dir($dir) or !is_writable($dir)) {
             throw new \Exception("can't write files in $dir", 41);
         }
+
         return true;
     }
 
@@ -84,6 +85,7 @@ class Upload
         if (count($this->uploadedFilesData) === 1) {
             return $this->uploadedFilesData[0];
         }
+
         return $this->uploadedFilesData;
     }
 
