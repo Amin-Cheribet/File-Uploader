@@ -6,8 +6,8 @@
     "license": "MIT",
 
     "require": {
-        "php": ">=7.1.6",
-        "phpunit/phpunit": ">=6.0"
+        "php": "^8.0",
+        "phpunit/phpunit": "^9.5"
     },
 
     "authors": [
