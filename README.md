@@ -43,6 +43,22 @@ var_dump($data);
 //      'name' => 'myFileName',
 //      'path' => 'document/images/photo.jpg'
 // ]
+// 
+// Or in case of multi file upload
+//
+// [
+//      [
+//          'id' => 'er23sfd3p4uo ',
+//          'name' => 'photo1',
+//          'path' => 'document/images/photo1.jpg'
+//      ],
+//      [
+//          'id' => 'sf23s6sdf23s',
+//          'name' => 'photo2',d
+//          'path' => 'document/images/photo2.jpg'
+//      ]
+// ]
+//
 ```
 
  ### Validation:
@@ -66,6 +82,7 @@ $file->save('myDirectory');
 ```
 
 ### Processing uploaded files:
+Note: this function require php-gd to be installed on the server.
 currently only images can be processed, available methods are:
 - compress(int $quality)
     NOTE : compresssion level 0 to 100 lower is the most compressed and lowest quality
