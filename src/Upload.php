@@ -48,7 +48,7 @@ class Upload
         return $this->uploadedFilesData;
     }
 
-    public function save(string $dir)
+    public function save(string $dir): array
     {
         $this->verifyDirectory($dir);
         $this->fillFilesData($dir);
@@ -56,22 +56,23 @@ class Upload
         return $this->resolveFilesData();
     }
 
-    private function verifyDirectory(string $dir)
+    private function verifyDirectory(string $dir): bool
     {
         if (!is_dir($dir) or !is_writable($dir)) {
             throw new \Exception("can't write files in $dir", 41);
         }
+
         return true;
     }
 
-    private function fillFilesData(string $dir)
+    private function fillFilesData(string $dir): void
     {
         foreach ($this->filesCollection as $file) {
             $path = $dir.DIRECTORY_SEPARATOR.$file->getName().'.'.$file->getExtension();
 
             $this->uploadToServer($file->getPathName(), $path);
 
-            $this->uploadedFilesData[] = (object) [
+            $this->uploadedFilesData[] = [
                 'id'   => uniqid(),
                 'name' => $file->getName(),
                 'path' => $path,
@@ -79,15 +80,16 @@ class Upload
         }
     }
 
-    private function resolveFilesData()
+    private function resolveFilesData(): array
     {
         if (count($this->uploadedFilesData) === 1) {
             return $this->uploadedFilesData[0];
         }
+
         return $this->uploadedFilesData;
     }
 
-    private function uploadToServer(string $tmpName, string $path)
+    private function uploadToServer(string $tmpName, string $path): void
     {
         if (!move_uploaded_file($tmpName, $path)) {
             throw new \Exception("Error during uploading $path", 42);
