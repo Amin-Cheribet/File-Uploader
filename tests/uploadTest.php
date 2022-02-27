@@ -4,7 +4,7 @@ use PHPUnit\Framework\TestCase;
 
 class uploadTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $_FILES = [
@@ -50,7 +50,7 @@ class uploadTest extends TestCase
         copy(__DIR__.'/helpers/testfile', __DIR__.'/helpers/tmpfile2');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unlink(__DIR__.'/helpers/tmpfile');
         unlink(__DIR__.'/helpers/tmpfile1');

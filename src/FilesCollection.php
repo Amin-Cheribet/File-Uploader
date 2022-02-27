@@ -29,7 +29,7 @@ class FilesCollection extends \ArrayIterator
         throw new \Exception('Input data Error', 1);
     }
 
-    private function setMultiFiles(array $files)
+    private function setMultiFiles(array $files): \Generator
     {
         for ($i = 0; $i < count($files['name']); $i++) {
             if (strlen($files['tmp_name'][$i]) > 0) {
@@ -42,7 +42,7 @@ class FilesCollection extends \ArrayIterator
         }
     }
 
-    private function setSingleFile(array $file)
+    private function setSingleFile(array $file): \Generator
     {
         if ($file['size'] !== 0) {
             yield [
