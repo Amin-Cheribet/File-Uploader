@@ -1,21 +1,21 @@
 {
-    "name": "mohamed-amine/file-uploader",
+    "name"       : "mohamed-amine/file-uploader",
     "description": "a light PHP script that upload your files/images with easy steps & some cool features like compression & resizing",
-    "keywords": ["upload", "file", "image"],
-    "type": "library",
-    "license": "MIT",
+    "keywords"   : ["upload", "file", "image"],
+    "type"       : "library",
+    "license"    : "MIT",
 
     "require": {
-        "php": "^8.0",
-        "phpunit/phpunit": "^9.5"
+        "php"            : "^8.2",
+        "phpunit/phpunit": "^10.1"
     },
 
     "authors": [
         {
-            "name": "Mohamed Amine",
-            "email": "MohamedAmine1c@gmail.com",
-            "homepage": "https://github.com/MohamedAmine-C/File-Uploader",
-            "role": "Developer"
+            "name"    : "Amin Cheribet",
+            "email"   : "amin.cheribet2@gmail.com",
+            "homepage": "https://github.com/Amin-Cheribet/File-Uploader",
+            "role"    : "Owner"
         }
     ],
 
