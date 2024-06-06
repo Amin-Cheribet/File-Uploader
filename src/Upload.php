@@ -4,14 +4,16 @@ namespace Upload;
 
 class Upload
 {
-    private $filesCollection;
-    private $uploadedFilesData = [];
+    private FilesCollection $filesCollection;
+    private array $uploadedFilesData = [];
+    private Validator $validator;
+    private FileProcessor $FileProcessor;
 
     public function __construct(string $field)
     {
         $this->filesCollection = new FilesCollection($field);
-        $this->validator       = new Validator($this->filesCollection);
-        $this->FileProcessor   = new FileProcessor($this->filesCollection);
+        $this->validator = new Validator($this->filesCollection);
+        $this->FileProcessor = new FileProcessor($this->filesCollection);
     }
 
     public function exist(): bool
@@ -68,12 +70,10 @@ class Upload
     private function fillFilesData(string $dir): void
     {
         foreach ($this->filesCollection as $file) {
-            $path = $dir.DIRECTORY_SEPARATOR.$file->getName().'.'.$file->getExtension();
-
+            $path = $dir . DIRECTORY_SEPARATOR . $file->getName() . '.' . $file->getExtension();
             $this->uploadToServer($file->getPathName(), $path);
-
             $this->uploadedFilesData[] = [
-                'id'   => uniqid(),
+                'id' => uniqid(),
                 'name' => $file->getName(),
                 'path' => $path,
             ];

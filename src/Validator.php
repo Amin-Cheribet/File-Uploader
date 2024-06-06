@@ -4,8 +4,8 @@ namespace Upload;
 
 class Validator
 {
-    private $filesCollection;
-    private $errors = [];
+    private FilesCollection $filesCollection;
+    private array $errors = [];
 
     public function __construct(FilesCollection $filesCollection)
     {

@@ -4,9 +4,9 @@ namespace Upload;
 
 class File extends \SplFileInfo
 {
-    private $userFileName;
-    private $definedFileName;
-    private $tmpName;
+    private string $userFileName;
+    private string $definedFileName;
+    private string $tmpName;
 
     public function __construct(array $data)
     {

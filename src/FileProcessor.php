@@ -4,7 +4,7 @@ namespace Upload;
 
 class FileProcessor
 {
-    private $filesCollection;
+    private FilesCollection $filesCollection;
 
     public function __construct(FilesCollection $filesCollection)
     {
